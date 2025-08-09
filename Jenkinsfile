@@ -24,7 +24,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy aplikasi (simulasi)...'
-                // contoh: sh 'scp -r build/* user@server:/path/to/deploy'
+                // contoh kalau mau deploy ke server:
+                // sh 'scp -r build/* user@server:/path/to/deploy'
             }
         }
         stage('End') {
