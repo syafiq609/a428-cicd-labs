@@ -1,14 +1,10 @@
 pipeline {
     agent {
         docker {
-            image 'node:16'
+            image 'node:lts-bullseye-slim'
+            args '-p 30000:30000'
         }
     }
-    stages {
-        stage('Start') {
-            steps {
-                echo 'Memulai pipeline...'
-            }
         }
         stage('Build') {
             steps {
