@@ -5,19 +5,31 @@ pipeline {
         }
     }
     stages {
+        stage('Start') {
+            steps {
+                echo 'Memulai pipeline...'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'npm '
-            } 
+                sh 'npm install'
+                sh 'npm run build'
+            }
         }
-        stage('tests') {
+        stage('Test') {
             steps {
                 sh 'npm test'
             }
         }
-        stage('Deploy'){
+        stage('Deploy') {
             steps {
-                sh 'npm run build'
+                echo 'Deploy aplikasi (simulasi)...'
+                // contoh: sh 'scp -r build/* user@server:/path/to/deploy'
+            }
+        }
+        stage('End') {
+            steps {
+                echo 'Pipeline selesai.'
             }
         }
     }
