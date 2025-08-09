@@ -5,26 +5,45 @@ pipeline {
             args '-p 30000:30000'
         }
     }
+
+    options {
+        skipDefaultCheckout()
+    }
+
+    stages {
+        stage('Start') {
+            steps {
+                echo 'Memulai Proses Pipeline'
+                checkout scm
+            }
         }
+
         stage('Build') {
             steps {
+                echo 'Proses Build Dimulai...'
                 sh 'npm install'
                 sh 'npm run build'
             }
         }
+
         stage('Test') {
             steps {
-                sh 'npm test'
+                echo 'Menjalankan Test...'
+                sh 'CI=true npm test -- --watchAll=false'
             }
         }
+
         stage('Deploy') {
             steps {
+                echo 'Melakukan Deploy aplikasi (simulasi)...'
                 sh './jenkins/scripts/deliver.sh'
-                echo 'Deploy aplikasi (simulasi)...'
-                 sh './jenkins/scripts/deliver.sh'
-                // Kalau mau deploy beneran:
-                // sh 'scp -r build/* user@server:/path/to/deploy'
             }
         }
-        
-    
+
+        stage('End') {
+            steps {
+                echo 'Pipeline Selesai ✅'
+            }
+        }
+    }
+}
