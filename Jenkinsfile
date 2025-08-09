@@ -19,15 +19,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh './jenkins/scripts/deliver.sh'
                 echo 'Deploy aplikasi (simulasi)...'
+                 sh './jenkins/scripts/deliver.sh'
                 // Kalau mau deploy beneran:
                 // sh 'scp -r build/* user@server:/path/to/deploy'
             }
         }
-        stage('End') {
-            steps {
-                echo 'Pipeline selesai.'
-            }
-        }
-    }
-}
+        
+    
