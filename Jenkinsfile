@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Proses Build Dimulai...'
                 sh 'npm install'
-                sh 'npm run build'
+                sh 'export NODE_OPTIONS=--openssl-legacy-provider && npm run build'
             }
         }
 
