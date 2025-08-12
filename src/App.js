@@ -1,4 +1,4 @@
-im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port React, { Component } from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
